@@ -1,0 +1,1141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4b4e4f">
+  <meta name="description" content="N.O.D. 공식 홈페이지 — 사념재해 대응, 레버넌트 복지, 장의사 지원 안내">
+  <title>N.O.D. 공식 홈페이지</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23201b17'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='%23c66b2b' stroke-width='4'/%3E%3Cpath d='M32 11v42M11 32h42M17 17l30 30M47 17L17 47' stroke='%23eee6d7' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23201b17' stroke='%23c66b2b' stroke-width='3'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink:#252829;
+      --ink-soft:#5d6263;
+      --paper:#f5f6f4;
+      --paper-2:#e9ebe9;
+      --paper-3:#d7dad7;
+      --orange:#b65d27;
+      --orange-2:#c86b31;
+      --brown:#665044;
+      --black:#25282a;
+      --line:#a8adaa;
+      --line-soft:rgba(55,61,62,.17);
+      --green:#506858;
+      --red:#8c3e31;
+      --shadow:0 4px 13px rgba(35,40,41,.15);
+      --max:1180px;
+      --font-scale:1;
+      --scan-opacity:.055;
+      --motion:1;
+    }
+
+    *{box-sizing:border-box}
+    html{font-size:calc(16px * var(--font-scale));scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--paper-3);
+      font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+      line-height:1.65;
+      min-width:320px;
+    }
+    body::after{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;
+      opacity:var(--scan-opacity);
+      background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(35,39,40,.07) 4px);
+      mix-blend-mode:multiply;
+    }
+    body[data-theme="dark"]{
+      --ink:#eee7d9;--ink-soft:#b9afa0;--paper:#1c1916;--paper-2:#26211c;--paper-3:#332b24;
+      --line:#6f6255;--line-soft:rgba(235,221,200,.14);--shadow:0 18px 54px rgba(0,0,0,.35);
+      color-scheme:dark;
+    }
+    body[data-theme="contrast"]{
+      --ink:#fff;--ink-soft:#dedede;--paper:#090909;--paper-2:#111;--paper-3:#1d1d1d;
+      --orange:#ff8236;--orange-2:#ff9a5c;--line:#d4d4d4;--line-soft:rgba(255,255,255,.24);
+      color-scheme:dark;
+    }
+    body.no-effects{--scan-opacity:0}
+    body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+    button,input,select,textarea{font:inherit;color:inherit}
+    button,a{touch-action:manipulation}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .skip-link{position:fixed;top:-60px;left:12px;z-index:10000;padding:10px 16px;background:var(--black);color:#fff;text-decoration:none}
+    .skip-link:focus{top:10px}
+
+    .utility{background:linear-gradient(#575b5c,#444849);color:#ecefed;border-bottom:1px solid #303334;font-size:.76rem;letter-spacing:.04em;box-shadow:inset 0 -1px rgba(255,255,255,.08)}
+    .utility-inner{min-height:34px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .utility-status{display:flex;align-items:center;gap:8px;white-space:nowrap}
+    .status-lamp{width:7px;height:7px;border-radius:50%;background:#d47735;box-shadow:0 0 0 3px rgba(208,120,56,.14)}
+    .utility-actions{display:flex;align-items:center}
+    .utility button{border:0;border-left:1px solid #696d6e;background:transparent;color:inherit;padding:7px 11px;cursor:pointer}
+    .utility button:hover,.utility button:focus-visible{background:#343738;color:#fff}
+
+    .masthead{background:linear-gradient(var(--paper),var(--paper-2));border-bottom:1px solid var(--line);box-shadow:inset 0 -1px rgba(255,255,255,.75)}
+    .masthead-inner{height:106px;display:flex;align-items:center;justify-content:space-between;gap:36px}
+    .brand{display:flex;align-items:center;gap:17px;text-decoration:none;min-width:0}
+    .brand-mark{width:66px;height:66px;position:relative;display:grid;place-items:center;flex:0 0 auto}
+    .brand-mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2}
+    .brand-symbol{width:62px;height:62px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;position:relative}
+    .brand-symbol::before,.brand-symbol::after{content:"";position:absolute;background:var(--ink)}
+    .brand-symbol::before{width:46px;height:2px}.brand-symbol::after{width:2px;height:46px}
+    .brand-symbol span{position:relative;z-index:1;width:21px;height:21px;border:5px solid var(--orange);border-radius:50%;background:var(--paper)}
+    .brand-copy{min-width:0}
+    .brand-kicker{display:block;color:var(--brown);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.72rem;letter-spacing:.24em;margin-bottom:1px}
+    .brand-name{display:flex;align-items:baseline;gap:12px;line-height:1.15}
+    .brand-name strong{font-size:1.6rem;letter-spacing:-.045em;font-weight:850}
+    .brand-name small{font:700 .86rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.06em;color:var(--brown)}
+    .masthead-meta{text-align:right;color:var(--ink-soft);font-size:.76rem;line-height:1.75}
+    .masthead-meta strong{display:block;color:var(--orange);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.14em}
+
+    .gnb-wrap{position:sticky;top:0;z-index:500;background:linear-gradient(#705a4c,#4f3d33);border-top:1px solid #80695b;border-bottom:3px solid var(--orange);box-shadow:0 2px 5px rgba(27,31,32,.2),inset 0 1px rgba(255,255,255,.12)}
+    .gnb-inner{display:flex;align-items:stretch;min-height:58px}
+    .menu-toggle{display:none;width:58px;border:0;border-right:1px solid var(--line);background:var(--ink);color:var(--paper);cursor:pointer}
+    .gnb{display:grid;grid-template-columns:repeat(7,1fr);flex:1;margin:0;padding:0;list-style:none}
+    .gnb li{border-right:1px solid rgba(255,255,255,.18)}
+    .gnb li:first-child{border-left:1px solid rgba(255,255,255,.18)}
+    .nav-link{position:relative;width:100%;height:100%;min-height:56px;border:0;background:transparent;color:#f4eee3;cursor:pointer;font-weight:750;font-size:.88rem;letter-spacing:-.025em;padding:9px 5px}
+    .nav-link::after{content:"";position:absolute;left:50%;bottom:-3px;width:0;height:5px;background:var(--orange);transition:width calc(.22s * var(--motion)),left calc(.22s * var(--motion))}
+    .nav-link:hover,.nav-link:focus-visible,.nav-link.active{color:#fff;background:linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.26));text-shadow:0 1px #30241e}
+    .nav-link.active::after{left:15%;width:70%}
+    .nav-serial{display:block;font:500 .61rem ui-monospace,SFMono-Regular,Consolas,monospace;color:#c9bbab;letter-spacing:.16em}
+
+    .alert-strip{background:linear-gradient(var(--paper),var(--paper-2));border-bottom:1px solid var(--line);box-shadow:inset 0 1px rgba(255,255,255,.65)}
+    .alert-inner{min-height:45px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;font-size:.82rem}
+    .alert-label{background:var(--red);color:#fff;padding:4px 10px;font-weight:800;letter-spacing:.08em}
+    .alert-message{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .alert-date{color:var(--ink-soft);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.74rem}
+
+    main{min-height:65vh;background:var(--paper)}
+    .page{display:none;animation:pageIn calc(.38s * var(--motion)) ease both}
+    .page.active{display:block}
+    @keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+    .hero{position:relative;border-bottom:1px solid var(--line);overflow:hidden;background:var(--paper-2);color:var(--ink);box-shadow:inset 0 1px rgba(255,255,255,.65)}
+    .hero::before,.hero::after{display:none}
+    .hero-inner{position:relative;z-index:1;min-height:304px;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.55fr);gap:18px;align-items:stretch;padding-block:26px}
+    .hero-inner>div:first-child{border:1px solid var(--line);background:var(--paper);padding:31px 34px;position:relative}
+    .hero-inner>div:first-child::after{content:"N.O.D. 시민정보 서비스";position:absolute;right:18px;top:14px;color:var(--ink-soft);font:600 .68rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.1em}
+    .eyebrow{margin:0 0 13px;color:var(--orange-2);font:700 .75rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.22em;text-transform:uppercase}
+    .hero h1{margin:0;max-width:700px;font-size:clamp(1.75rem,3vw,2.65rem);line-height:1.28;letter-spacing:-.055em;word-break:keep-all}
+    .hero h1 em{display:inline;color:var(--orange);font-style:normal}
+    .hero-copy{max-width:670px;color:var(--ink-soft);margin:16px 0 0;font-size:.92rem;word-break:keep-all}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:42px;padding:8px 16px;border:1px solid #383c3d;background:linear-gradient(#5b5f60,#343738);color:#fff;text-decoration:none;cursor:pointer;font-weight:750;font-size:.84rem;border-radius:1px;box-shadow:inset 0 1px rgba(255,255,255,.24),0 1px 1px rgba(0,0,0,.12)}
+    .btn:hover,.btn:focus-visible{background:var(--orange);border-color:var(--orange);color:#fff}
+    .btn.light{background:linear-gradient(#5b5f60,#343738);border-color:#383c3d;color:#fff}
+    .btn.ghost-light{background:linear-gradient(var(--paper),var(--paper-2));border-color:var(--line);color:var(--ink);box-shadow:inset 0 1px rgba(255,255,255,.75),0 1px 1px rgba(0,0,0,.08)}
+    .btn.outline{background:transparent;color:var(--ink)}
+    .btn.small{min-height:36px;padding:6px 12px;font-size:.78rem}
+    .arrow{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+    .dispatch-card{align-self:stretch;border:1px solid #929795;border-top:4px solid var(--orange);background:linear-gradient(var(--paper),var(--paper-2));color:var(--ink);padding:24px;display:flex;flex-direction:column;justify-content:center;box-shadow:inset 0 1px rgba(255,255,255,.8),0 2px 5px rgba(39,44,45,.12)}
+    .dispatch-card .code{color:var(--ink-soft);font:600 .68rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.12em}
+    .dispatch-card h2{font-size:1.18rem;margin:9px 0 7px;line-height:1.45}
+    .dispatch-card p{font-size:.8rem;color:var(--ink-soft);margin:0 0 18px}
+    .dispatch-line{height:1px;background:var(--line);margin:0 0 15px}
+
+    .public-banner{position:relative;min-width:0;min-height:286px;border:1px solid #8f9492;background:var(--paper);overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;box-shadow:inset 0 1px rgba(255,255,255,.85),0 2px 5px rgba(39,44,45,.12)}
+    .public-banner.dragging{cursor:grabbing}
+    .banner-viewport{height:100%;min-height:286px;position:relative;overflow:hidden}
+    .banner-slide{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 34%;opacity:0;visibility:hidden;pointer-events:none;transform:translateX(22px);transition:opacity calc(.55s * var(--motion)) ease,transform calc(.55s * var(--motion)) cubic-bezier(.2,.75,.2,1),visibility 0s linear calc(.55s * var(--motion));background:var(--paper)}
+    .banner-slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(var(--drag-x,0px));transition-delay:0s;z-index:2}
+    .public-banner.dragging .banner-slide.active{transition:none;opacity:var(--drag-opacity,1)}
+    .banner-copy{position:relative;z-index:2;padding:35px 36px 54px;align-self:center;min-width:0}
+    .banner-copy .eyebrow{margin-bottom:10px}
+    .banner-copy h1{min-height:2.6em}
+    .banner-media{position:relative;min-height:286px;background-color:#655043;background-position:center;background-size:cover;border-left:1px solid var(--line);overflow:hidden}
+    .banner-media::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(52,40,31,.08),rgba(35,27,22,.56)),repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.035) 6px)}
+    .banner-media::after{content:attr(data-label);position:absolute;left:14px;right:14px;bottom:13px;color:#eee6d8;font:700 .66rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.13em;border-top:1px solid rgba(255,255,255,.4);padding-top:7px}
+    .banner-slide:nth-child(1) .banner-media{background-image:url('assets/banners/nod-headquarters.jpg')}
+    .banner-slide:nth-child(2) .banner-media{background-image:url('assets/banners/civil-safety.jpg')}
+    .banner-slide:nth-child(3) .banner-media{background-image:url('assets/banners/revenant-support.jpg')}
+    .carousel-controls{position:absolute;z-index:5;left:34px;right:calc(34% + 24px);bottom:15px;display:flex;align-items:center;gap:9px}
+    .carousel-arrow{width:28px;height:28px;border:1px solid #9b9f9d;background:linear-gradient(var(--paper),var(--paper-3));padding:0;cursor:pointer;display:grid;place-items:center;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;box-shadow:inset 0 1px rgba(255,255,255,.8)}
+    .carousel-arrow:hover,.carousel-arrow:focus-visible{background:var(--ink);color:var(--paper)}
+    .carousel-dots{display:flex;align-items:center;gap:5px}
+    .carousel-dot{width:25px;height:5px;border:0;background:var(--paper-3);padding:0;cursor:pointer}
+    .carousel-dot.active{background:var(--orange)}
+    .carousel-count{margin-left:auto;color:var(--ink-soft);font:600 .68rem ui-monospace,SFMono-Regular,Consolas,monospace}
+    .carousel-progress{position:absolute;z-index:6;left:0;right:0;bottom:0;height:3px;background:var(--line-soft);overflow:hidden}
+    .carousel-progress span{display:block;width:0;height:100%;background:var(--orange)}
+    .public-banner.autoplay .carousel-progress span{animation:bannerProgress 6.5s linear forwards}
+    @keyframes bannerProgress{from{width:0}to{width:100%}}
+    [data-typewriter].typing::after{content:"▌";display:inline-block;margin-left:.08em;color:var(--orange);font-size:.8em;animation:typeCaret .72s steps(1) infinite}
+    @keyframes typeCaret{50%{opacity:0}}
+
+    body.reveal-ready .reveal-item{opacity:0;transform:translateY(22px);transition:opacity calc(.72s * var(--motion)) ease,transform calc(.72s * var(--motion)) cubic-bezier(.2,.75,.2,1);transition-delay:var(--reveal-delay,0ms)}
+    body.reveal-ready .reveal-item.is-visible{opacity:1;transform:none}
+    body.reduce-motion .reveal-item{opacity:1!important;transform:none!important;transition:none!important}
+
+    .quick{position:relative;z-index:3;margin-top:0;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 2px 4px rgba(43,48,49,.08)}
+    .quick-grid{display:grid;grid-template-columns:repeat(5,1fr);background:linear-gradient(var(--paper),var(--paper-2));border-inline:1px solid var(--line);box-shadow:inset 0 1px rgba(255,255,255,.85)}
+    .quick-btn{min-height:86px;border:0;border-right:1px solid var(--line);background:transparent;padding:13px 10px;cursor:pointer;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;text-shadow:0 1px rgba(255,255,255,.5)}
+    .quick-btn:last-child{border-right:0}
+    .quick-btn:hover,.quick-btn:focus-visible{background:var(--paper-2);color:var(--orange)}
+    .quick-icon{font:700 1rem ui-monospace,SFMono-Regular,Consolas,monospace;width:32px;height:32px;border:1px solid #989d9a;display:grid;place-items:center;background:linear-gradient(var(--paper),var(--paper-3));box-shadow:inset 0 1px rgba(255,255,255,.8)}
+    .quick-btn strong{font-size:.84rem}
+
+    .home-section{padding:46px 0}
+    .home-section.alt{background:var(--paper-2);border-block:1px solid var(--line-soft);box-shadow:inset 0 1px rgba(255,255,255,.75)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px;border-bottom:2px solid #6e7372;padding:0 0 11px 13px;position:relative}
+    .section-head::before{content:"";position:absolute;left:0;top:4px;bottom:11px;width:4px;background:var(--orange)}
+    .section-head h2{margin:0;font-size:1.65rem;letter-spacing:-.045em}
+    .section-head p{margin:0;color:var(--ink-soft);font-size:.8rem}
+    .text-link{border:0;background:transparent;color:var(--ink-soft);cursor:pointer;font-size:.78rem;text-decoration:underline;text-underline-offset:4px}
+    .text-link:hover{color:var(--orange)}
+
+    .news-layout{display:grid;grid-template-columns:1.5fr .7fr;gap:32px}
+    .notice-tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:0}
+    .notice-tab{border:0;border-right:1px solid var(--line);border-top:1px solid var(--line);background:linear-gradient(var(--paper),var(--paper-3));padding:10px 22px;cursor:pointer;font-weight:700;font-size:.83rem;box-shadow:inset 0 1px rgba(255,255,255,.8)}
+    .notice-tab:first-child{border-left:1px solid var(--line)}
+    .notice-tab.active{background:var(--ink);color:var(--paper)}
+    .notice-panel{display:none}
+    .notice-panel.active{display:block}
+    .notice-list{list-style:none;padding:0;margin:0;border-top:1px solid var(--ink)}
+    .notice-list li{display:grid;grid-template-columns:auto 1fr auto;gap:15px;align-items:center;padding:13px 10px;border-bottom:1px solid var(--line-soft);font-size:.86rem}
+    .notice-list .tag{color:var(--orange);font:700 .68rem ui-monospace,SFMono-Regular,Consolas,monospace}
+    .notice-list button{border:0;background:transparent;text-align:left;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0}
+    .notice-list button:hover{text-decoration:underline}
+    .notice-list time{color:var(--ink-soft);font:500 .7rem ui-monospace,SFMono-Regular,Consolas,monospace}
+    .side-callout{background:var(--ink);color:var(--paper);padding:25px;position:relative;overflow:hidden;min-height:250px}
+    .side-callout::after{display:none}
+    .side-callout .eyebrow{margin-bottom:7px}
+    .side-callout h3{margin:0 0 10px;font-size:1.42rem}
+    .side-callout p{color:#cfc5b6;font-size:.84rem}
+
+    .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #9ba09d;background:linear-gradient(var(--paper),var(--paper-2));box-shadow:inset 0 1px rgba(255,255,255,.8),0 1px 3px rgba(37,43,44,.1)}
+    .stat{padding:26px 22px;border-right:1px solid var(--line);position:relative}
+    .stat:last-child{border-right:0}
+    .stat small{display:block;color:var(--ink-soft);font-size:.72rem;margin-bottom:7px}
+    .stat strong{font:700 2.1rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:-.05em}
+    .stat span{font-size:.75rem;color:var(--orange);margin-left:4px}
+    .stat::before{content:"";position:absolute;top:0;left:0;width:42px;height:3px;background:var(--orange)}
+
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service-card{border:1px solid #a0a5a2;background:var(--paper);min-height:255px;display:flex;flex-direction:column;transition:none;box-shadow:0 1px 3px rgba(38,43,44,.1)}
+    .service-card:hover{transform:none;box-shadow:none;border-color:var(--ink)}
+    .card-visual{height:56px;background:#655043;position:relative;overflow:hidden;border-bottom:4px solid var(--orange)}
+    .card-visual::before{display:none}
+    .card-visual::after{content:attr(data-code);position:absolute;left:16px;top:14px;color:#eee6d9;font:700 .75rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.14em}
+    .service-card:nth-child(2) .card-visual{background-image:url('assets/facilities/containment.jpg')}
+    .service-card:nth-child(3) .card-visual{background-image:url('assets/facilities/medical.jpg')}
+    .service-body{padding:20px;display:flex;flex-direction:column;flex:1}
+    .service-body h3{margin:0 0 8px;font-size:1.05rem}
+    .service-body p{margin:0 0 16px;color:var(--ink-soft);font-size:.82rem}
+    .service-body .text-link{margin-top:auto;align-self:flex-start;padding:0}
+
+    .district-banner{display:grid;grid-template-columns:1fr 1fr;min-height:315px;border:1px solid var(--line);background:var(--ink);color:var(--paper);overflow:hidden}
+    .district-art{position:relative;min-height:280px;background:radial-gradient(circle at 100% 100%,transparent 0 12%,#b96832 12.2% 12.7%,transparent 13% 25%,rgba(185,104,50,.65) 25.2% 25.7%,transparent 26% 39%,rgba(185,104,50,.36) 39.2% 39.6%,transparent 40%),repeating-conic-gradient(from 0deg at 100% 100%,transparent 0deg 4.3deg,rgba(235,224,207,.3) 4.35deg 4.5deg),#231d18}
+    .district-art::after{content:"00";position:absolute;right:18px;bottom:8px;color:#e1d4c3;font:700 1.2rem ui-monospace,SFMono-Regular,Consolas,monospace}
+    .district-copy{padding:44px;align-self:center}
+    .district-copy h2{font-size:2rem;margin:0 0 12px;letter-spacing:-.05em}
+    .district-copy p{color:#cbc0b1;font-size:.9rem;margin:0 0 25px}
+
+    .page-hero{background:linear-gradient(#715b4e,#514037);color:#f2ebdf;border-top:1px solid #816b5e;border-bottom:4px solid var(--orange);position:relative;overflow:hidden;box-shadow:inset 0 1px rgba(255,255,255,.12)}
+    .page-hero::after{display:none}
+    .page-hero-inner{min-height:138px;display:flex;align-items:end;justify-content:space-between;gap:30px;padding-block:27px;position:relative;z-index:1}
+    .page-hero h1{margin:0;font-size:1.82rem;letter-spacing:-.05em}
+    .page-hero p{margin:7px 0 0;color:#baafa0;font-size:.86rem}
+    .breadcrumb{display:flex;align-items:center;gap:9px;list-style:none;margin:0 0 6px;padding:0;color:#b9ae9e;font-size:.72rem}
+    .breadcrumb li+li::before{content:"/";margin-right:9px;color:#6f6357}
+    .page-code{font:500 .72rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.18em;color:#c37a48;text-align:right}
+
+    .inner-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;padding-block:48px 82px}
+    .side-nav{border:1px solid #929795;border-top:3px solid #555a59;align-self:start;position:sticky;top:85px;box-shadow:0 1px 3px rgba(40,45,46,.1)}
+    .side-nav-title{margin:0;padding:18px 15px;background:linear-gradient(#636868,#3f4344);color:#fff;font-size:1.1rem;text-shadow:0 1px #292c2d}
+    .side-nav button{width:100%;border:0;border-bottom:1px solid var(--line);background:linear-gradient(var(--paper),var(--paper-2));text-align:left;padding:13px 15px;cursor:pointer;font-size:.82rem;position:relative;box-shadow:inset 0 1px rgba(255,255,255,.65)}
+    .side-nav button:hover,.side-nav button.active{background:var(--paper-2);color:var(--orange);font-weight:800}
+    .side-nav button.active::after{content:"›";position:absolute;right:15px}
+    .content-head{padding-bottom:20px;border-bottom:2px solid var(--ink);margin-bottom:30px}
+    .content-head h2{margin:0;font-size:1.85rem;letter-spacing:-.045em}
+    .content-head p{margin:8px 0 0;color:var(--ink-soft);font-size:.86rem}
+    .lead-box{border-left:5px solid var(--orange);background:var(--paper-2);padding:22px 25px;margin-bottom:30px;font-size:1rem;font-weight:650;word-break:keep-all}
+    .prose h3{margin:35px 0 13px;font-size:1.22rem;border-bottom:1px solid var(--line);padding-bottom:8px}
+    .prose p{color:var(--ink-soft);font-size:.9rem}
+    .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+    .mission-item{border:1px solid var(--line);padding:22px 18px;background:var(--paper)}
+    .mission-item b{display:block;color:var(--orange);font:700 .72rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.13em;margin-bottom:6px}
+    .mission-item strong{display:block;margin-bottom:8px}
+    .mission-item p{margin:0;font-size:.8rem}
+    .history{border-left:1px solid var(--line);margin:25px 0 0 8px;padding-left:25px}
+    .history-item{position:relative;display:grid;grid-template-columns:90px 1fr;gap:18px;padding:0 0 24px}
+    .history-item::before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--orange);left:-30px;top:8px}
+    .history-item time{font:700 .85rem ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--orange)}
+    .history-item p{margin:0}
+
+    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+    .filter-btn{border:1px solid var(--line);background:linear-gradient(var(--paper),var(--paper-3));padding:8px 15px;cursor:pointer;font-size:.78rem;box-shadow:inset 0 1px rgba(255,255,255,.8)}
+    .filter-btn.active,.filter-btn:hover{background:var(--ink);color:var(--paper)}
+    .people-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .person{border:1px solid var(--line);background:var(--paper);overflow:hidden}
+    .portrait{height:220px;position:relative;background:linear-gradient(135deg,#504237,#241e1a);overflow:hidden}
+    .portrait::before{content:attr(data-initial);position:absolute;right:10px;bottom:-20px;color:rgba(255,255,255,.08);font:700 6rem Impact,sans-serif}
+    .portrait::after{content:"PERSONNEL RECORD";position:absolute;left:12px;top:10px;color:rgba(255,255,255,.55);font:600 .57rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.15em}
+    .portrait img{width:100%;height:100%;object-fit:cover;filter:sepia(.16) contrast(1.03)}
+    .person-body{padding:18px}
+    .person-team{color:var(--orange);font:700 .66rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.13em}
+    .person h3{font-size:1.18rem;margin:5px 0 3px}
+    .person-role{color:var(--ink-soft);font-size:.75rem;margin-bottom:13px}
+    .person p{font-size:.8rem;color:var(--ink-soft);margin:0}
+    .person[hidden]{display:none}
+
+    .hazard-banner{border:1px solid var(--line);display:grid;grid-template-columns:110px 1fr;margin-bottom:26px;background:var(--paper-2)}
+    .hazard-grade{display:grid;place-items:center;background:var(--red);color:#fff;font:800 2.4rem ui-monospace,SFMono-Regular,Consolas,monospace}
+    .hazard-banner div:last-child{padding:18px 22px}
+    .hazard-banner h3{margin:0 0 3px;font-size:1rem}.hazard-banner p{margin:0;color:var(--ink-soft);font-size:.8rem}
+    .info-table{width:100%;border-collapse:collapse;border-top:2px solid var(--ink);font-size:.84rem}
+    .info-table th,.info-table td{border-bottom:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}
+    .info-table th{width:25%;background:linear-gradient(var(--paper),var(--paper-3));font-weight:750;box-shadow:inset 0 1px rgba(255,255,255,.65)}
+    .steps{counter-reset:steps;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+    .step{counter-increment:steps;border:1px solid var(--line);padding:18px 14px;background:var(--paper)}
+    .step::before{content:"0" counter(steps);display:block;color:var(--orange);font:700 .75rem ui-monospace,SFMono-Regular,Consolas,monospace;margin-bottom:10px}
+    .step strong{font-size:.87rem}.step p{font-size:.77rem;margin:6px 0 0}
+
+    .facility-list{display:grid;gap:16px}
+    .facility{display:grid;grid-template-columns:190px 1fr;border:1px solid #a0a5a2;background:var(--paper);box-shadow:0 1px 3px rgba(38,43,44,.1)}
+    .facility-visual{min-height:150px;background:linear-gradient(145deg,rgba(185,95,37,.65),rgba(28,25,22,.92)),repeating-linear-gradient(0deg,transparent 0 11px,rgba(255,255,255,.08) 12px);position:relative}
+    .facility-visual::after{content:attr(data-code);position:absolute;right:12px;bottom:8px;color:rgba(255,255,255,.6);font:700 .7rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.14em}
+    .facility-body{padding:20px 24px}.facility-body h3{margin:0 0 8px;font-size:1.1rem}.facility-body p{margin:0;color:var(--ink-soft);font-size:.82rem}
+
+    .district-summary{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+    .district-map-mini{min-height:360px;border:1px solid var(--line);background:radial-gradient(circle at 50% 50%,var(--ink) 0 8%,var(--orange) 8.2% 8.7%,transparent 9% 24%,rgba(185,95,37,.6) 24.2% 24.7%,transparent 25% 39%,rgba(185,95,37,.35) 39.2% 39.5%,transparent 40%),repeating-conic-gradient(from -2.5deg,transparent 0 4.75deg,var(--line) 4.85deg 5deg),var(--paper-2);position:relative;overflow:hidden}
+    .district-map-mini::before{content:"EMBER / 72 DISTRICT CARTOGRAPHIC INDEX";position:absolute;left:15px;top:13px;font:600 .63rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.16em;color:var(--ink-soft)}
+    .district-copy-card{border:1px solid var(--line);padding:27px;background:var(--paper)}
+    .district-copy-card h3{margin:0 0 12px;font-size:1.35rem}
+    .district-copy-card p{font-size:.84rem;color:var(--ink-soft)}
+    .district-facts{list-style:none;margin:22px 0;padding:0;border-top:1px solid var(--line)}
+    .district-facts li{display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-bottom:1px solid var(--line-soft);font-size:.78rem}
+    .district-facts span{color:var(--ink-soft)}
+
+    .archive-list{border-top:2px solid var(--ink)}
+    .archive-row{display:grid;grid-template-columns:65px 100px 1fr 105px;gap:14px;padding:14px 10px;border-bottom:1px solid var(--line);align-items:center;font-size:.82rem}
+    .archive-row.head{background:var(--paper-2);font-weight:750;text-align:center}
+    .archive-row .num,.archive-row time{text-align:center;color:var(--ink-soft);font:500 .72rem ui-monospace,SFMono-Regular,Consolas,monospace}
+    .archive-row .category{text-align:center;color:var(--orange);font-weight:750;font-size:.74rem}
+    .archive-row button{border:0;background:transparent;text-align:left;cursor:pointer;padding:0}
+    .archive-row button:hover{text-decoration:underline}
+
+    .report-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:32px}
+    .report-guide div{background:var(--paper-2);padding:18px}
+    .report-guide b{display:block;color:var(--orange);font:700 .68rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.1em;margin-bottom:5px}
+    .report-guide strong{font-size:.88rem}
+    .report-guide p{margin:5px 0 0;color:var(--ink-soft);font-size:.75rem}
+    .form-wrap{border:1px solid #999e9b;background:var(--paper);padding:30px;box-shadow:0 1px 4px rgba(38,43,44,.12)}
+    .form-head{border-bottom:2px solid var(--ink);padding-bottom:15px;margin-bottom:22px}
+    .form-head h3{margin:0}.form-head p{margin:5px 0 0;color:var(--ink-soft);font-size:.78rem}
+    .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 22px}
+    .field{display:flex;flex-direction:column;gap:6px;min-width:0}
+    .field.full{grid-column:1/-1}
+    .field label,.field-label{font-weight:750;font-size:.8rem}
+    .required{color:var(--red)}
+    .field small{color:var(--ink-soft);font-size:.68rem}
+    .field input,.field select,.field textarea{width:100%;border:1px solid #a2a7a4;background:var(--paper);padding:11px 12px;border-radius:0;outline:none;box-shadow:inset 0 1px 2px rgba(25,29,30,.08)}
+    .field textarea{min-height:118px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);box-shadow:0 0 0 2px rgba(185,95,37,.16)}
+    .form-check{display:flex;gap:9px;align-items:flex-start;font-size:.76rem;margin-top:18px}
+    .form-check input{margin-top:4px;accent-color:var(--orange)}
+    .form-actions{display:flex;align-items:center;gap:14px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+    .form-message{font-size:.78rem;color:var(--ink-soft)}
+    .form-message.success{color:var(--green);font-weight:700}.form-message.error{color:var(--red);font-weight:700}
+    .privacy-note{margin-top:18px;padding:14px 16px;border:1px dashed var(--line);color:var(--ink-soft);font-size:.73rem;background:var(--paper-2)}
+
+    footer{background:var(--black);color:#bcb1a2;border-top:4px solid var(--orange);padding:38px 0 28px}
+    .footer-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
+    .footer-brand{display:flex;gap:15px;align-items:center;color:#eee5d7}
+    .footer-emblem{width:42px;height:42px;border:1px solid #9d8c7c;border-radius:50%;display:grid;place-items:center;color:#d2793e;font:700 .72rem ui-monospace,SFMono-Regular,Consolas,monospace}
+    .footer-brand strong{font:700 1.8rem Impact,sans-serif;letter-spacing:.08em}
+    .footer-brand span{display:block;font-size:.68rem;color:#9f9588;letter-spacing:.06em}
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap;margin:18px 0 9px;font-size:.73rem}
+    .footer-links button{border:0;background:transparent;color:inherit;padding:0;cursor:pointer}
+    .copyright{font:500 .64rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;color:#7e756a}
+    .footer-seal{text-align:right;font:500 .67rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.14em;color:#7e7469}
+
+    dialog{border:1px solid var(--line);padding:0;background:var(--paper);color:var(--ink);box-shadow:0 28px 90px rgba(0,0,0,.42);width:min(620px,calc(100% - 28px));max-height:84vh}
+    dialog::backdrop{background:rgba(14,11,9,.68);backdrop-filter:blur(2px)}
+    .dialog-head{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:17px 20px;background:var(--ink);color:var(--paper);border-bottom:2px solid var(--orange)}
+    .dialog-head h2{margin:0;font-size:1.05rem}.dialog-head small{font:500 .6rem ui-monospace,SFMono-Regular,Consolas,monospace;color:#b6aa9c;letter-spacing:.14em}
+    .icon-btn{border:1px solid rgba(255,255,255,.3);background:transparent;color:inherit;width:32px;height:32px;cursor:pointer}
+    .dialog-body{padding:24px;overflow:auto;max-height:calc(84vh - 66px)}
+    .setting-row{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+    .setting-row strong{display:block;font-size:.86rem}.setting-row small{display:block;color:var(--ink-soft);font-size:.7rem}
+    .segmented{display:flex;border:1px solid var(--line)}
+    .segmented button{border:0;border-right:1px solid var(--line);background:var(--paper-2);padding:7px 10px;cursor:pointer;font-size:.72rem}
+    .segmented button:last-child{border-right:0}.segmented button.active{background:var(--ink);color:var(--paper)}
+    .switch{position:relative;width:45px;height:24px;display:block}
+    .switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;background:var(--paper-3);border:1px solid var(--line);cursor:pointer}.slider::before{content:"";position:absolute;width:16px;height:16px;left:3px;top:3px;background:var(--ink);transition:transform .2s}.switch input:checked+.slider{background:var(--orange)}.switch input:checked+.slider::before{transform:translateX(21px);background:#fff}
+    .search-box{display:flex;border-bottom:2px solid var(--ink);margin-bottom:18px}
+    .search-box input{flex:1;min-width:0;border:0;background:var(--paper-2);padding:13px 14px;outline:none}
+    .search-box button{border:0;background:var(--ink);color:var(--paper);padding:0 18px;cursor:pointer}
+    .search-results{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    .search-results button{width:100%;border:1px solid var(--line);background:var(--paper);padding:12px 14px;text-align:left;cursor:pointer}
+    .search-results button:hover{border-color:var(--orange);background:var(--paper-2)}
+    .search-results b{display:block;font-size:.84rem}.search-results span{display:block;color:var(--ink-soft);font-size:.7rem;margin-top:2px}
+    .empty-search{color:var(--ink-soft);font-size:.8rem;text-align:center;padding:26px}
+
+    .toast{position:fixed;right:20px;bottom:20px;z-index:2000;background:var(--ink);color:var(--paper);border-left:4px solid var(--orange);padding:13px 17px;box-shadow:var(--shadow);font-size:.78rem;transform:translateY(140%);opacity:0;transition:transform calc(.25s * var(--motion)),opacity calc(.25s * var(--motion));max-width:360px}
+    .toast.show{transform:none;opacity:1}
+
+    @media (max-width:980px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .masthead-inner{height:92px}.brand-mark{width:55px;height:55px}.brand-symbol{width:52px;height:52px}.brand-name strong{font-size:1.45rem}
+      .gnb{position:absolute;left:0;right:0;top:100%;display:none;grid-template-columns:repeat(2,1fr);background:#554132;border-bottom:3px solid var(--orange);box-shadow:var(--shadow);padding:8px 14px 14px}
+      .gnb.open{display:grid}.gnb li,.gnb li:first-child{border:1px solid var(--line);margin:-1px 0 0 -1px}.nav-link{text-align:left;padding-inline:14px}.nav-link::after{display:none}.nav-link.active{background:var(--paper-2);border-left:4px solid var(--orange)}
+      .menu-toggle{display:block}.gnb-inner::after{content:"N.O.D. INTEGRATED PUBLIC SERVICE";align-self:center;margin-left:17px;color:var(--ink-soft);font:600 .65rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.12em}
+      .hero-inner{grid-template-columns:1fr;gap:18px}.dispatch-card{max-width:none}.quick-grid{grid-template-columns:repeat(5,1fr)}
+      .inner-layout{grid-template-columns:1fr;gap:26px}.side-nav{position:static;display:flex;overflow-x:auto;border:1px solid var(--line);background:var(--paper);scrollbar-width:thin}.side-nav-title{display:none}.side-nav button{width:auto;min-width:max-content;border-bottom:0;border-right:1px solid var(--line)}.side-nav button.active::after{display:none}
+      .people-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:720px){
+      .utility-inner{min-height:31px}.utility-status span:last-child{display:none}.utility button:nth-child(3),.utility button:nth-child(4){display:none}
+      .masthead-inner{height:79px}.brand-mark{width:46px;height:46px}.brand-symbol{width:44px;height:44px}.brand-symbol::before{width:33px}.brand-symbol::after{height:33px}.brand-symbol span{width:17px;height:17px;border-width:4px}.brand-name strong{font-size:1.2rem}.brand-name small,.masthead-meta{display:none}.brand-kicker{font-size:.58rem}
+      .alert-inner{grid-template-columns:auto 1fr}.alert-date{display:none}.alert-message{font-size:.75rem}
+      .hero-inner{min-height:0;padding-block:18px}.hero-inner>div:first-child{padding:27px 22px}.hero-inner>div:first-child::after{display:none}.hero h1{font-size:1.9rem}.hero-copy{font-size:.88rem}.dispatch-card{padding:21px}.banner-slide{grid-template-columns:minmax(0,1fr) 31%}.banner-copy{padding:29px 24px 53px}.carousel-controls{left:23px;right:calc(31% + 18px)}
+      .quick{margin-top:0}.quick-grid{grid-template-columns:repeat(2,1fr)}.quick-btn{min-height:76px;border-bottom:1px solid var(--line)}.quick-btn:last-child{grid-column:1/-1}.quick-btn:nth-child(2),.quick-btn:nth-child(4){border-right:0}
+      .home-section{padding:48px 0}.section-head{align-items:start;flex-direction:column;gap:4px}.news-layout,.district-banner,.district-summary{grid-template-columns:1fr}.district-copy{padding:30px 25px;order:-1}.stat-grid{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.card-grid{grid-template-columns:1fr}
+      .page-hero-inner{min-height:150px;padding-block:27px}.page-hero h1{font-size:1.8rem}.page-code{display:none}.inner-layout{padding-block:28px 58px}
+      .mission-grid,.people-grid{grid-template-columns:1fr}.portrait{height:260px}.hazard-banner{grid-template-columns:76px 1fr}.steps{grid-template-columns:1fr 1fr}.facility{grid-template-columns:1fr}.facility-visual{min-height:100px}.archive-row{grid-template-columns:52px 72px 1fr}.archive-row time{display:none}.archive-row.head{display:none}
+      .report-guide{grid-template-columns:1fr}.form-wrap{padding:20px 16px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.form-actions{align-items:stretch;flex-direction:column}.form-actions .btn{width:100%}
+      .footer-grid{grid-template-columns:1fr}.footer-seal{text-align:left}.setting-row{grid-template-columns:1fr}.segmented{width:100%}.segmented button{flex:1}
+    }
+    @media (max-width:430px){
+      .container{width:min(calc(100% - 20px),var(--max))}.utility button{padding-inline:8px}.brand{gap:10px}.gnb-inner::after{font-size:.56rem;letter-spacing:.08em;margin-left:10px}.menu-toggle{width:52px}
+      .hero h1{font-size:1.65rem}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.banner-slide{grid-template-columns:1fr}.banner-media{position:absolute;inset:0;min-height:0;border:0;opacity:.12}.banner-media::after{display:none}.banner-copy{padding:28px 20px 57px}.banner-copy h1{min-height:3.9em}.carousel-controls{left:19px;right:19px}.notice-tabs{overflow-x:auto}.notice-tab{white-space:nowrap;padding-inline:14px}.notice-list li{grid-template-columns:auto 1fr}.notice-list time{display:none}.stat{padding:20px 15px}.stat strong{font-size:1.7rem}.steps{grid-template-columns:1fr}.portrait{height:235px}.history-item{grid-template-columns:68px 1fr;gap:12px}
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header>
+    <div class="utility">
+      <div class="container utility-inner">
+        <div class="utility-status"><span class="status-lamp" aria-hidden="true"></span><span>앰버 전역 대응 체계 정상 운영 중</span></div>
+        <div class="utility-actions">
+          <button type="button" data-open-search>통합검색</button>
+          <button type="button" data-route="notice">알림·자료</button>
+          <button type="button" data-font-action="up">가＋</button>
+          <button type="button" data-open-settings>화면설정</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="masthead">
+      <div class="container masthead-inner">
+        <a class="brand" href="#home" data-route="home" aria-label="N.O.D. 홈페이지">
+          <span class="brand-mark">
+            <span class="brand-symbol" aria-hidden="true"><span></span></span>
+            <img src="assets/nod-logo.png" alt="" onerror="this.remove()">
+          </span>
+          <span class="brand-copy">
+            <span class="brand-kicker">NATIONAL OCCULT DISASTER DIRECTORATE</span>
+            <span class="brand-name"><strong>국가 사념재해 대응국</strong><small>N.O.D.</small></span>
+          </span>
+        </a>
+        <div class="masthead-meta">
+          <strong>PUBLIC INFORMATION NETWORK</strong>
+          시민 안내 · 재해 신고 · 기관 정보<br>
+          문서 체계 NOD-WEB / REV. 01
+        </div>
+      </div>
+    </div>
+
+    <div class="gnb-wrap">
+      <nav class="container gnb-inner" aria-label="주 메뉴">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="gnb" aria-label="메뉴 열기">☰</button>
+        <ul class="gnb" id="gnb">
+          <li><button class="nav-link" data-route="about"><span class="nav-serial">01</span>N.O.D. 소개</button></li>
+          <li><button class="nav-link" data-route="people"><span class="nav-serial">02</span>조직·구성원</button></li>
+          <li><button class="nav-link" data-route="hazard"><span class="nav-serial">03</span>사념재해 정보</button></li>
+          <li><button class="nav-link" data-route="business"><span class="nav-serial">04</span>사업·시설</button></li>
+          <li><button class="nav-link" data-route="districts"><span class="nav-serial">05</span>앰버 72구역</button></li>
+          <li><button class="nav-link" data-route="notice"><span class="nav-serial">06</span>알림·자료</button></li>
+          <li><button class="nav-link" data-route="report"><span class="nav-serial">07</span>신고·민원</button></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="alert-strip">
+      <div class="container alert-inner">
+        <span class="alert-label">상황 안내</span>
+        <span class="alert-message">현재 공공 경보 단계는 ‘관찰’입니다. 미확인 사념체와 접촉하지 말고 안전 거리를 유지하십시오.</span>
+        <span class="alert-date">STATUS / OBSERVE</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page active" id="page-home" data-page="home">
+      <div class="hero">
+        <div class="container hero-inner">
+          <section class="public-banner" id="public-banner" role="region" aria-roledescription="슬라이드 배너" aria-label="주요 안내" tabindex="0">
+            <div class="banner-viewport">
+              <article class="banner-slide active" data-slide="0" aria-label="1 / 3">
+                <div class="banner-copy">
+                  <p class="eyebrow">앰버 시민 통합안내</p>
+                  <h1 data-typewriter>사념재해 관련 민원·정보 서비스</h1>
+                  <p class="hero-copy">사념재해 감시·격리·제압과 레버넌트 복지, 장의사 활동지원 업무를 안내합니다.</p>
+                  <div class="hero-actions"><button class="btn light" type="button" data-route="report">사념체 신고하기 <span class="arrow">→</span></button><button class="btn ghost-light" type="button" data-route="hazard">시민 행동요령</button></div>
+                </div>
+                <div class="banner-media" data-label="CENTRAL OFFICE / DISTRICT 00" aria-hidden="true"></div>
+              </article>
+              <article class="banner-slide" data-slide="1" aria-label="2 / 3" aria-hidden="true" inert>
+                <div class="banner-copy">
+                  <p class="eyebrow">시민 안전 안내</p>
+                  <h1 data-typewriter>미확인 사념체에 접근하지 마십시오</h1>
+                  <p class="hero-copy">외형과 행동을 안전한 거리에서 기록한 뒤 온라인 신고망으로 접수해 주십시오.</p>
+                  <div class="hero-actions"><button class="btn light" type="button" data-route="report">온라인 신고 접수</button><button class="btn ghost-light" type="button" data-route="hazard">발견 시 행동요령</button></div>
+                </div>
+                <div class="banner-media" data-label="CIVIL SAFETY / OBSERVE" aria-hidden="true"></div>
+              </article>
+              <article class="banner-slide" data-slide="2" aria-label="3 / 3" aria-hidden="true" inert>
+                <div class="banner-copy">
+                  <p class="eyebrow">공공 복지 서비스</p>
+                  <h1 data-typewriter>레버넌트의 일상 복귀를 지원합니다</h1>
+                  <p class="hero-copy">등록·안정화 상담·의료·생활 정착을 연결하는 지원제도를 확인하십시오.</p>
+                  <div class="hero-actions"><button class="btn light" type="button" data-route="business">지원사업 안내</button><button class="btn ghost-light" type="button" data-route="people">담당 부서 찾기</button></div>
+                </div>
+                <div class="banner-media" data-label="WELFARE SERVICE / PUBLIC" aria-hidden="true"></div>
+              </article>
+            </div>
+            <div class="carousel-controls">
+              <button class="carousel-arrow" type="button" data-carousel-prev aria-label="이전 배너">←</button>
+              <div class="carousel-dots" role="tablist" aria-label="배너 선택">
+                <button class="carousel-dot active" type="button" data-carousel-dot="0" role="tab" aria-selected="true" aria-label="첫 번째 배너"></button>
+                <button class="carousel-dot" type="button" data-carousel-dot="1" role="tab" aria-selected="false" aria-label="두 번째 배너"></button>
+                <button class="carousel-dot" type="button" data-carousel-dot="2" role="tab" aria-selected="false" aria-label="세 번째 배너"></button>
+              </div>
+              <button class="carousel-arrow" type="button" data-carousel-next aria-label="다음 배너">→</button>
+              <button class="carousel-arrow" type="button" data-carousel-toggle aria-label="자동 전환 일시정지">Ⅱ</button>
+              <span class="carousel-count"><b>01</b> / 03</span>
+            </div>
+            <div class="carousel-progress" aria-hidden="true"><span></span></div>
+          </section>
+          <aside class="dispatch-card" aria-label="긴급 안내">
+            <span class="code">시민 신고 안내 / 상시 접수</span>
+            <h2>사념체를 발견한 경우</h2>
+            <div class="dispatch-line"></div>
+            <p>사념체의 외형·소리·행동 양상을 기록하되 직접 촬영을 위해 접근하지 마십시오. 이미 확보한 사진은 온라인 신고에 첨부할 수 있습니다.</p>
+            <button class="btn light" type="button" data-route="report">온라인 신고 접수</button>
+          </aside>
+        </div>
+      </div>
+
+      <div class="quick">
+        <div class="container quick-grid">
+          <button class="quick-btn" data-route="report"><span class="quick-icon">!</span><strong>사념체 신고</strong></button>
+          <button class="quick-btn" data-route="hazard"><span class="quick-icon">i</span><strong>재해 행동요령</strong></button>
+          <button class="quick-btn" data-route="people"><span class="quick-icon">N</span><strong>부서·대원 안내</strong></button>
+          <button class="quick-btn" data-route="districts"><span class="quick-icon">72</span><strong>구역 지도</strong></button>
+          <button class="quick-btn" data-route="notice"><span class="quick-icon">▤</span><strong>공지·채용</strong></button>
+        </div>
+      </div>
+
+      <section class="home-section">
+        <div class="container">
+          <div class="section-head"><div><p class="eyebrow">PUBLIC NOTICE</p><h2>새 소식</h2></div><button class="text-link" data-route="notice">알림·자료 전체보기 →</button></div>
+          <div class="news-layout">
+            <div>
+              <div class="notice-tabs" role="tablist" aria-label="새 소식 분류">
+                <button class="notice-tab active" data-notice-tab="notice" role="tab" aria-selected="true">공지사항</button>
+                <button class="notice-tab" data-notice-tab="press" role="tab" aria-selected="false">보도자료</button>
+                <button class="notice-tab" data-notice-tab="recruit" role="tab" aria-selected="false">채용·입찰</button>
+              </div>
+              <div class="notice-panel active" data-notice-panel="notice">
+                <ul class="notice-list">
+                  <li><span class="tag">중요</span><button data-route="notice">제4분기 구역별 합동 사념재해 대피훈련 안내</button><time>446.09.12</time></li>
+                  <li><span class="tag">안내</span><button data-route="notice">온라인 사념체 신고 자료의 활용 범위 안내</button><time>446.09.03</time></li>
+                  <li><span class="tag">시설</span><button data-route="notice">중앙 기억안정실 정기 점검에 따른 이용 제한</button><time>446.08.26</time></li>
+                  <li><span class="tag">공고</span><button data-route="notice">장의사 활동지원 물품 지급 기준 개정 예고</button><time>446.08.11</time></li>
+                </ul>
+              </div>
+              <div class="notice-panel" data-notice-panel="press">
+                <ul class="notice-list">
+                  <li><span class="tag">브리핑</span><button data-route="notice">제38구역 잔류 사념파 수습 완료 공동 브리핑</button><time>446.09.10</time></li>
+                  <li><span class="tag">자료</span><button data-route="notice">N.O.D.-공안 중앙 대응체계 정례회의 결과</button><time>446.08.29</time></li>
+                  <li><span class="tag">동향</span><button data-route="notice">앰버 외곽부 사념재해 발생 동향 통계 공개</button><time>446.08.15</time></li>
+                </ul>
+              </div>
+              <div class="notice-panel" data-notice-panel="recruit">
+                <ul class="notice-list">
+                  <li><span class="tag">채용</span><button data-route="notice">기록보존실 기간제 조사관 공개모집</button><time>446.09.08</time></li>
+                  <li><span class="tag">입찰</span><button data-route="notice">현장용 기억차폐 장비 유지보수 용역</button><time>446.09.01</time></li>
+                  <li><span class="tag">선발</span><button data-route="notice">장의사 보조인력 실무과정 교육생 선발</button><time>446.08.20</time></li>
+                </ul>
+              </div>
+            </div>
+            <aside class="side-callout">
+              <p class="eyebrow">REPORT ARCHIVE</p>
+              <h3>당신의 기록이<br>다음 대응을 만듭니다.</h3>
+              <p>익명화에 동의한 신고 사례는 제압 완료 후 시민 안전 기록과 현장 대원 채널에 소개될 수 있습니다.</p>
+              <button class="btn small light" data-route="report">신고 절차 확인</button>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section alt">
+        <div class="container">
+          <div class="section-head"><div><p class="eyebrow">OPERATION SUMMARY</p><h2>오늘의 대응 현황</h2></div><p>공개 가능 자료 기준 · 446년 9월</p></div>
+          <div class="stat-grid">
+            <div class="stat"><small>금일 접수 신고</small><strong>18</strong><span>건</span></div>
+            <div class="stat"><small>현장 확인 중</small><strong>07</strong><span>건</span></div>
+            <div class="stat"><small>운영 대피시설</small><strong>24</strong><span>개소</span></div>
+            <div class="stat"><small>공개 안전등급</small><strong>B</strong><span>관찰</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section">
+        <div class="container">
+          <div class="section-head"><div><p class="eyebrow">CORE SERVICES</p><h2>주요 업무</h2></div><p>격리에서 복귀까지, 하나의 대응 체계</p></div>
+          <div class="card-grid">
+            <article class="service-card"><div class="card-visual" data-code="CONTAIN"></div><div class="service-body"><h3>사념재해 감시·제압</h3><p>앰버 전역의 이상 사념파를 감시하고 현장 대응팀을 배치하여 시민 피해 확산을 차단합니다.</p><button class="text-link" data-route="business">업무 안내 →</button></div></article>
+            <article class="service-card"><div class="card-visual" data-code="WELFARE"></div><div class="service-body"><h3>레버넌트 복지지원</h3><p>등록, 안정화 상담, 주거·근로 연계 등 레버넌트의 일상 복귀를 위한 공공 서비스를 운영합니다.</p><button class="text-link" data-route="business">지원 안내 →</button></div></article>
+            <article class="service-card"><div class="card-visual" data-code="UNDERTAKER"></div><div class="service-body"><h3>장의사 활동지원</h3><p>현장 장비, 의료 연계, 교육과 기록관리 체계를 제공하여 장의사의 안전한 활동을 지원합니다.</p><button class="text-link" data-route="business">사업 안내 →</button></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section alt">
+        <div class="container district-banner">
+          <div class="district-art" aria-hidden="true"></div>
+          <div class="district-copy">
+            <p class="eyebrow">EMBER CARTOGRAPHIC SERVICE</p>
+            <h2>앰버 72구역 안내</h2>
+            <p>각 구역의 지도부, 주요 산업, 공공시설과 N.O.D. 대응 거점을 확인할 수 있습니다. 상세 지도는 별도의 지도 단말기에서 열립니다.</p>
+            <div class="hero-actions"><button class="btn light" data-route="districts">구역 안내 보기</button><a class="btn ghost-light" href="https://zambaboy1234.github.io/Choonchundakgalbi/" target="_blank" rel="noopener">지도 단말기 열기 ↗</a></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-about" data-page="about">
+      <div class="page-hero" data-serial="01"><div class="container page-hero-inner"><div><ol class="breadcrumb"><li>홈</li><li>N.O.D. 소개</li></ol><h1>N.O.D. 소개</h1><p>국가 사념재해 대응국의 설립 목적과 운영 원칙을 안내합니다.</p></div><div class="page-code">INSTITUTION / PUBLIC</div></div></div>
+      <div class="container inner-layout">
+        <aside class="side-nav"><h2 class="side-nav-title">N.O.D. 소개</h2><button class="active">기관 소개</button><button>설립 목적</button><button>연혁</button><button>상징·표장</button><button>수상·협력</button></aside>
+        <article class="prose">
+          <div class="content-head"><h2>기관 소개</h2><p>시민의 기억과 일상을 지키는 앰버 중앙 전문 대응기관</p></div>
+          <div class="lead-box">“우리가 수습하는 것은 재해의 흔적이지만, 우리가 지키는 것은 그 뒤에 남은 사람의 일상입니다.”</div>
+          <p>N.O.D.는 앰버 전역에서 발생하는 사념재해의 조사·격리·제압을 전담하기 위해 설립된 중앙기관입니다. 공안 및 각 구역 지도부와 협력해 위험 정보를 통합하고, 현장 대응 이후의 회복과 기록 보존까지 이어지는 공공 대응체계를 운영합니다.</p>
+          <h3>세 가지 핵심 임무</h3>
+          <div class="mission-grid">
+            <div class="mission-item"><b>01 / RESPONSE</b><strong>사념재해 대응</strong><p>관측, 분류, 출동, 격리와 제압을 하나의 절차로 연결합니다.</p></div>
+            <div class="mission-item"><b>02 / WELFARE</b><strong>레버넌트 복지</strong><p>존엄과 안전을 원칙으로 등록·의료·생활 정착을 지원합니다.</p></div>
+            <div class="mission-item"><b>03 / SUPPORT</b><strong>장의사 지원</strong><p>현장 인력의 장비, 교육, 의료와 사후 관리를 담당합니다.</p></div>
+          </div>
+          <h3>설립 연혁</h3>
+          <div class="history">
+            <div class="history-item"><time>412</time><p>공안 산하 특수재해 조사실 설치. 중앙 0구역에서 최초 업무 개시.</p></div>
+            <div class="history-item"><time>419</time><p>사념재해 대응국으로 확대 개편, 독립 현장대 편성.</p></div>
+            <div class="history-item"><time>431</time><p>레버넌트 복지지원 및 장의사 의료지원 체계 정식 운영.</p></div>
+            <div class="history-item"><time>441</time><p>72개 전 구역 공동대응망 연결 및 시민 온라인 신고망 개통.</p></div>
+            <div class="history-item"><time>446</time><p>통합 기록보존소 및 차세대 사념파 관측 체계 운용.</p></div>
+          </div>
+          <h3>기관 표장</h3>
+          <p>중앙의 원은 보호받아야 할 시민과 기억을, 바깥의 방사형 선은 앰버 72개 구역을 향해 전개되는 공공 대응망을 상징합니다. 주황색은 현장 경계와 책임을, 아이보리색은 보존된 기록을 뜻합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="page-people" data-page="people">
+      <div class="page-hero" data-serial="02"><div class="container page-hero-inner"><div><ol class="breadcrumb"><li>홈</li><li>조직·구성원</li></ol><h1>조직·구성원</h1><p>시민에게 공개된 범위 내에서 N.O.D.의 조직과 현장 인력을 소개합니다.</p></div><div class="page-code">PERSONNEL / PUBLIC ABSTRACT</div></div></div>
+      <div class="container inner-layout">
+        <aside class="side-nav"><h2 class="side-nav-title">조직·구성원</h2><button class="active">인물 소개</button><button>조직도</button><button>현장대</button><button>지원부서</button></aside>
+        <div>
+          <div class="content-head"><h2>주요 인물</h2><p>보안상 일부 경력 및 능력 정보는 공개되지 않습니다.</p></div>
+          <div class="filter-bar" role="group" aria-label="소속별 인물 필터"><button class="filter-btn active" data-team-filter="all">전체</button><button class="filter-btn" data-team-filter="director">국장실</button><button class="filter-btn" data-team-filter="n1">N-1</button><button class="filter-btn" data-team-filter="n2">N-2</button><button class="filter-btn" data-team-filter="n3">N-3</button></div>
+          <div class="people-grid" id="people-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-hazard" data-page="hazard">
+      <div class="page-hero" data-serial="03"><div class="container page-hero-inner"><div><ol class="breadcrumb"><li>홈</li><li>사념재해 정보</li></ol><h1>사념재해 정보</h1><p>사념체와 티탄에 관한 공개 정보 및 시민 행동요령입니다.</p></div><div class="page-code">HAZARD INFORMATION / CIVIL</div></div></div>
+      <div class="container inner-layout">
+        <aside class="side-nav"><h2 class="side-nav-title">사념재해 정보</h2><button class="active">사념체란</button><button>티탄</button><button>레버넌트</button><button>위험등급</button><button>행동요령</button></aside>
+        <article class="prose">
+          <div class="content-head"><h2>사념체란 무엇인가</h2><p>정확히 알고, 안전하게 신고하십시오.</p></div>
+          <div class="hazard-banner"><div class="hazard-grade">B</div><div><h3>현재 공공 경보 단계: 관찰</h3><p>일상 활동은 가능하나 미확인 개체 발견 시 접근하지 말고 N.O.D.에 신고하십시오.</p></div></div>
+          <p>사념체는 강한 감정, 기억 또는 집단적 인식의 잔류가 물리적 현상으로 발현된 존재를 통칭합니다. 외형과 행동은 발생 원인에 따라 크게 다르며, 익숙한 사람이나 사물을 모방하는 사례도 보고됩니다. 외형만으로 안전 여부를 판단할 수 없습니다.</p>
+          <h3>공개 분류</h3>
+          <table class="info-table"><tbody><tr><th>사념체</th><td>독립적인 형태와 행동을 보이는 사념재해 개체. 직접 접촉을 피해야 합니다.</td></tr><tr><th>티탄</th><td>광범위한 인식과 현상에 영향을 미치는 초대형·상위 사념 존재. 관련 정보의 상당 부분은 제한됩니다.</td></tr><tr><th>레버넌트</th><td>사념재해와의 접촉 이후 특수한 상태로 생존한 인원. 시민으로서 보호와 지원의 대상입니다.</td></tr><tr><th>잔류 사념파</th><td>개체 소멸 뒤 공간이나 물체에 남은 영향. 현장 훼손 없이 신고해야 합니다.</td></tr></tbody></table>
+          <h3>발견 시 행동요령</h3>
+          <div class="steps"><div class="step"><strong>거리 확보</strong><p>최소 두 개의 구조물을 사이에 두고 시야를 벗어납니다.</p></div><div class="step"><strong>접촉 금지</strong><p>대화, 추적, 도발 및 유류품 접촉을 삼가십시오.</p></div><div class="step"><strong>특징 기록</strong><p>안전한 위치에서 시간·장소·행동·소리를 기억합니다.</p></div><div class="step"><strong>공식 신고</strong><p>온라인 신고 또는 가까운 구역 대응소에 알립니다.</p></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="page-business" data-page="business">
+      <div class="page-hero" data-serial="04"><div class="container page-hero-inner"><div><ol class="breadcrumb"><li>홈</li><li>사업·시설</li></ol><h1>주요 사업·시설</h1><p>N.O.D.가 운영하는 대응·의료·기록 시설과 시민 지원사업을 소개합니다.</p></div><div class="page-code">SERVICE DIRECTORY / OPEN</div></div></div>
+      <div class="container inner-layout">
+        <aside class="side-nav"><h2 class="side-nav-title">사업·시설</h2><button class="active">주요 시설</button><button>재해 대응</button><button>복지지원</button><button>교육·연구</button></aside>
+        <div>
+          <div class="content-head"><h2>주요 시설</h2><p>일부 시설은 사전 승인 또는 공안 통행허가가 필요합니다.</p></div>
+          <div class="facility-list">
+            <article class="facility"><div class="facility-visual" data-code="00-HQ"></div><div class="facility-body"><h3>중앙 통합청사</h3><p>0구역에 위치한 N.O.D.의 행정·지휘 중심시설입니다. 신고 분석실, 중앙 상황실, 기록보존실이 운영됩니다.</p></div></article>
+            <article class="facility"><div class="facility-visual" data-code="C-WARD"></div><div class="facility-body"><h3>제1 기억안정동</h3><p>사념재해 노출 인원과 레버넌트를 위한 관찰·회복 시설입니다. 의료진과 전문 장의사가 상시 배치됩니다.</p></div></article>
+            <article class="facility"><div class="facility-visual" data-code="ARCHIVE"></div><div class="facility-body"><h3>통합 기록보존소</h3><p>앰버 전역의 사념재해 사례, 현장 기록과 오염 물품의 행정 자료를 보존합니다. 일반 열람은 공개자료에 한합니다.</p></div></article>
+            <article class="facility"><div class="facility-visual" data-code="TRAIN-3"></div><div class="facility-body"><h3>현장대 교육훈련원</h3><p>대원과 장의사 보조인력을 대상으로 차폐 장비 운용, 시민 대피 유도, 오염 통제 훈련을 실시합니다.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-districts" data-page="districts">
+      <div class="page-hero" data-serial="05"><div class="container page-hero-inner"><div><ol class="breadcrumb"><li>홈</li><li>앰버 72구역</li></ol><h1>앰버 72구역</h1><p>도시의 행정 구획과 지역별 대응 정보를 안내합니다.</p></div><div class="page-code">CARTOGRAPHIC INDEX / PUBLIC</div></div></div>
+      <div class="container inner-layout">
+        <aside class="side-nav"><h2 class="side-nav-title">앰버 72구역</h2><button class="active">구역 안내</button><button>권역별 현황</button><button>대피시설</button><button>지도부 연락처</button></aside>
+        <div>
+          <div class="content-head"><h2>구역 안내</h2><p>지도 단말기에서 0구역과 72개 외곽 구역의 상세 정보를 열람할 수 있습니다.</p></div>
+          <div class="district-summary">
+            <div class="district-map-mini" aria-label="앰버 방사형 지도 도식"></div>
+            <div class="district-copy-card">
+              <p class="eyebrow">EMBER METROPOLITAN AREA</p><h3>중앙 0구역과 72개 행정구역</h3>
+              <p>앰버는 공안이 관할하는 중앙 0구역을 중심으로 72개 구역이 방사형으로 배치되어 있습니다. 각 구역은 중심부에서 외곽까지 이어지는 독자적인 생활·산업권을 형성합니다.</p>
+              <ul class="district-facts"><li><span>중앙 통치구역</span><strong>1개</strong></li><li><span>외곽 행정구역</span><strong>72개</strong></li><li><span>권역 구분</span><strong>동·서·남·북부</strong></li><li><span>지도 기준점</span><strong>72 / 1 사이 북쪽</strong></li></ul>
+              <a class="btn" href="https://zambaboy1234.github.io/Choonchundakgalbi/" target="_blank" rel="noopener">상세 지도 단말기 열기 ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-notice" data-page="notice">
+      <div class="page-hero" data-serial="06"><div class="container page-hero-inner"><div><ol class="breadcrumb"><li>홈</li><li>알림·자료</li></ol><h1>알림·자료</h1><p>공지사항, 채용·입찰, 보도자료와 공개 기록을 확인하십시오.</p></div><div class="page-code">PUBLIC RECORD / BULLETIN</div></div></div>
+      <div class="container inner-layout">
+        <aside class="side-nav"><h2 class="side-nav-title">알림·자료</h2><button class="active">전체 게시물</button><button>공지사항</button><button>보도자료</button><button>채용·입찰</button><button>통계·간행물</button></aside>
+        <div>
+          <div class="content-head"><h2>전체 게시물</h2><p>최근 등록된 공개 문서입니다.</p></div>
+          <div class="archive-list">
+            <div class="archive-row head"><span>번호</span><span>분류</span><span>제목</span><span>등록일</span></div>
+            <div class="archive-row"><span class="num">1284</span><span class="category">공지</span><button>제4분기 구역별 합동 사념재해 대피훈련 안내</button><time>446.09.12</time></div>
+            <div class="archive-row"><span class="num">1283</span><span class="category">보도</span><button>제38구역 잔류 사념파 수습 완료 공동 브리핑</button><time>446.09.10</time></div>
+            <div class="archive-row"><span class="num">1282</span><span class="category">채용</span><button>기록보존실 기간제 조사관 공개모집</button><time>446.09.08</time></div>
+            <div class="archive-row"><span class="num">1281</span><span class="category">안내</span><button>온라인 사념체 신고 자료의 활용 범위 안내</button><time>446.09.03</time></div>
+            <div class="archive-row"><span class="num">1280</span><span class="category">입찰</span><button>현장용 기억차폐 장비 유지보수 용역</button><time>446.09.01</time></div>
+            <div class="archive-row"><span class="num">1279</span><span class="category">자료</span><button>N.O.D.-공안 중앙 대응체계 정례회의 결과</button><time>446.08.29</time></div>
+            <div class="archive-row"><span class="num">1278</span><span class="category">시설</span><button>중앙 기억안정실 정기 점검에 따른 이용 제한</button><time>446.08.26</time></div>
+            <div class="archive-row"><span class="num">1277</span><span class="category">통계</span><button>앰버 외곽부 사념재해 발생 동향 공개본</button><time>446.08.15</time></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-report" data-page="report">
+      <div class="page-hero" data-serial="07"><div class="container page-hero-inner"><div><ol class="breadcrumb"><li>홈</li><li>신고·민원</li></ol><h1>사념체 온라인 신고</h1><p>위급한 상황에서는 입력보다 먼저 안전한 장소로 이동하십시오.</p></div><div class="page-code">CIVIL REPORT / UNCLASSIFIED</div></div></div>
+      <div class="container inner-layout">
+        <aside class="side-nav"><h2 class="side-nav-title">신고·민원</h2><button class="active">사념체 신고</button><button>신고 처리절차</button><button>자주 묻는 질문</button><button>장의사 지원요청</button></aside>
+        <div>
+          <div class="content-head"><h2>사념체 신고</h2><p>신고자의 연락처는 수집하지 않으며, 접수 건에 대한 개별 회신은 제공되지 않습니다.</p></div>
+          <div class="report-guide"><div><b>STEP 01</b><strong>안전 확보</strong><p>개체와 거리를 두고 구조물 뒤로 이동합니다.</p></div><div><b>STEP 02</b><strong>관찰 내용 기록</strong><p>시간·장소·외형과 행동을 기억합니다.</p></div><div><b>STEP 03</b><strong>온라인 접수</strong><p>확보한 정보만 작성하고 무리한 촬영은 피합니다.</p></div></div>
+          <form class="form-wrap" id="report-form" novalidate>
+            <div class="form-head"><h3>온라인 신고서</h3><p><span class="required">*</span> 표시는 필수 입력 항목입니다. 사진 첨부는 선택사항입니다.</p></div>
+            <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form-grid">
+              <div class="field"><label for="report-type">신고 유형 <span class="required">*</span></label><select id="report-type" name="reportType" required><option value="">선택하십시오</option><option>사념체 목격</option><option>활동 중인 개체</option><option>잔류 사념파·오염 흔적</option><option>레버넌트 의심 상황</option><option>기타 이상현상</option></select></div>
+              <div class="field"><label for="district">구역 <span class="required">*</span></label><select id="district" name="district" required><option value="">구역 선택</option></select></div>
+              <div class="field full"><label for="location">상세 위치 <span class="required">*</span></label><input id="location" name="location" type="text" maxlength="120" required placeholder="건물명, 교차로, 인근 시설 등"></div>
+              <div class="field"><label for="occurred-at">발견 일시 <span class="required">*</span></label><input id="occurred-at" name="occurredAt" type="datetime-local" required></div>
+              <div class="field"><label for="nickname">공개 시 사용할 이름</label><input id="nickname" name="nickname" type="text" maxlength="30" placeholder="선택 입력 / 미입력 시 익명"></div>
+              <div class="field full"><label for="appearance">외형 묘사 <span class="required">*</span></label><textarea id="appearance" name="appearance" required maxlength="1200" placeholder="크기, 형태, 색, 움직임, 닮은 대상 등을 적어주십시오."></textarea></div>
+              <div class="field full"><label for="behavior">행동·소리·냄새</label><textarea id="behavior" name="behavior" maxlength="1200" placeholder="반복 행동, 이동 방향, 음성, 기계음, 특이한 냄새 등"></textarea></div>
+              <div class="field full"><label for="damage">피해 상황</label><textarea id="damage" name="damage" maxlength="800" placeholder="부상자, 시설 피해, 통행 방해 등 확인된 내용만 작성하십시오."></textarea></div>
+              <div class="field full"><label for="details">기타 신고 내용</label><textarea id="details" name="details" maxlength="1600" placeholder="발견 전후 상황이나 추가로 전달할 내용을 작성하십시오."></textarea></div>
+              <div class="field full"><label for="photo">사진 첨부</label><input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp"><small>JPG, PNG, WEBP / 최대 10MB. 촬영을 위해 위험한 장소로 접근하지 마십시오.</small></div>
+            </div>
+            <label class="form-check"><input id="public-use" name="publicUse" type="checkbox" value="동의"><span>현장 제압 완료 후, 신고 내용의 일부가 익명 처리되어 N.O.D. 공공 기록 또는 대원 활동 기록에 활용될 수 있음에 동의합니다. (선택)</span></label>
+            <label class="form-check"><input id="truth-check" type="checkbox" required><span>위 내용은 본인이 관찰하거나 확인한 범위 안에서 작성했으며, 고의적인 허위 신고가 아님을 확인합니다. <span class="required">*</span></span></label>
+            <div class="form-actions"><button class="btn" type="submit">신고서 접수</button><span class="form-message" id="form-message" role="status" aria-live="polite">사진 없이도 접수할 수 있습니다.</span></div>
+            <div class="privacy-note">N.O.D.는 이 신고서에서 이메일·전화번호 등 직접 연락처를 요구하지 않습니다. 신고 건에 대한 개별 답변은 제공되지 않으며, 대응이 완료된 일부 사례는 익명화 후 공개 기록으로 소개될 수 있습니다.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand"><span class="footer-emblem">NOD</span><div><strong>N.O.D.</strong><span>국가 사념재해 대응국 · NATIONAL OCCULT DISASTER DIRECTORATE</span></div></div>
+        <div class="footer-links"><button data-route="about">기관소개</button><button data-route="report">온라인 신고</button><button data-route="notice">공개자료</button><button data-open-settings>화면설정</button><button data-open-search>통합검색</button></div>
+        <div class="copyright">© 446 N.O.D. ALL PUBLIC RECORDS SUBJECT TO ARCHIVE REGULATION.</div>
+      </div>
+      <div class="footer-seal">CENTRAL DISTRICT 00<br>PUBLIC ACCESS NODE<br>DOCUMENT REV. 01</div>
+    </div>
+  </footer>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <div class="dialog-head"><div><h2 id="settings-title">화면 설정</h2><small>DISPLAY PREFERENCES</small></div><button class="icon-btn" type="button" data-close-dialog aria-label="닫기">×</button></div>
+    <div class="dialog-body">
+      <div class="setting-row"><div><strong>화면 테마</strong><small>아이보리, 야간, 고대비 화면을 선택합니다.</small></div><div class="segmented" id="theme-options"><button data-theme-value="light" class="active">아이보리</button><button data-theme-value="dark">야간</button><button data-theme-value="contrast">고대비</button></div></div>
+      <div class="setting-row"><div><strong>글자 크기</strong><small>본문과 인터페이스의 크기를 조절합니다.</small></div><div class="segmented" id="font-options"><button data-font-value="0.9">작게</button><button data-font-value="1" class="active">보통</button><button data-font-value="1.12">크게</button></div></div>
+      <div class="setting-row"><div><strong>아날로그 화면 효과</strong><small>스캔라인 질감을 표시합니다.</small></div><label class="switch"><input id="effects-toggle" type="checkbox" checked><span class="slider"></span></label></div>
+      <div class="setting-row"><div><strong>움직임 줄이기</strong><small>페이지 전환과 장식 애니메이션을 최소화합니다.</small></div><label class="switch"><input id="motion-toggle" type="checkbox"><span class="slider"></span></label></div>
+      <div style="margin-top:22px;display:flex;justify-content:flex-end"><button class="btn outline small" id="reset-settings" type="button">설정 초기화</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="search-dialog" aria-labelledby="search-title">
+    <div class="dialog-head"><div><h2 id="search-title">통합검색</h2><small>N.O.D. PUBLIC INDEX</small></div><button class="icon-btn" type="button" data-close-dialog aria-label="닫기">×</button></div>
+    <div class="dialog-body">
+      <div class="search-box"><label class="sr-only" for="site-search">검색어</label><input id="site-search" type="search" placeholder="업무, 인물, 시설, 자료 검색" autocomplete="off"><button id="search-submit" type="button">검색</button></div>
+      <ul class="search-results" id="search-results"></ul>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /*
+      실제 신고 전송을 활성화하려면 formEndpoint에 Formspree 등의 HTTPS 엔드포인트를 입력하십시오.
+      개인 이메일 주소는 이 파일 안에 적지 않습니다.
+    */
+    const SITE_CONFIG = {
+      formEndpoint: "",
+      maxFileBytes: 10 * 1024 * 1024,
+      mapUrl: "https://zambaboy1234.github.io/Choonchundakgalbi/"
+    };
+
+    const PERSONNEL = [
+      {team:"director", code:"DIRECTOR", name:"소장", role:"N.O.D. 대표 · 총괄책임자", image:"director.jpg", initial:"D", bio:"공안 연구직 출신으로 N.O.D.의 현장·연구·복지 업무를 총괄합니다. 세부 경력은 기록보호 규정에 따라 비공개입니다."},
+      {team:"n1", code:"N-1 / LEAD", name:"할", role:"N-1 통상대응팀장", image:"hal.jpg", initial:"H", bio:"일반 사념재해의 초기 격리와 시민 대피를 지휘합니다. 쇄도형 사념체 대응 전문 인력입니다."},
+      {team:"n1", code:"N-1", name:"도로시", role:"N-1 현장대원", image:"dorothy.jpg", initial:"D", bio:"현장 응급 지혈과 생체 오염 통제를 담당합니다. 의료지원반과 합동 임무를 수행합니다."},
+      {team:"n1", code:"N-1", name:"올가", role:"N-1 현장대원", image:"olga.jpg", initial:"O", bio:"원거리 관측 및 고위력 사격 임무를 담당합니다. 외곽 구역 광역 경계 작전에 주로 배치됩니다."},
+      {team:"n2", code:"N-2 / LEAD", name:"백연", role:"N-2 특수대응팀장", image:"baekyeon.jpg", initial:"B", bio:"근접 제압과 현장 지휘를 담당하는 특수대응 인력입니다. 복합 개체 대응 훈련을 총괄합니다."},
+      {team:"n2", code:"N-2", name:"쿠로세", role:"N-2 현장대원", image:"kurose.jpg", initial:"K", bio:"도검을 이용한 근접 대응과 통로 확보를 담당합니다. 신속한 민간인 구조에 특화되어 있습니다."},
+      {team:"n2", code:"N-2 / D-2", name:"재클린", role:"N-2 대원 · 중앙의료팀장", image:"jacqueline.jpg", initial:"J", bio:"의사이자 장의사로서 현장대와 중앙의료팀을 겸임합니다. 오염 노출자의 안정화와 회복을 지휘합니다."},
+      {team:"n3", code:"N-3 / LEAD", name:"유나", role:"N-3 기동대응팀장", image:"yuna.jpg", initial:"Y", bio:"공안 실무 경력을 바탕으로 구역 간 합동작전과 현장 통제를 지휘합니다."},
+      {team:"n3", code:"N-3", name:"비아트리스", role:"N-3 현장대원", image:"beatrice.jpg", initial:"B", bio:"근접 교전과 고위험 대상의 신속 제압을 담당합니다. 기동력이 필요한 임무에 우선 배치됩니다."},
+      {team:"n3", code:"N-3", name:"오웬", role:"N-3 현장대원", image:"owen.jpg", initial:"O", bio:"기사단 지휘관 경력을 가진 대응 인력으로, 방어선 구축과 합동대 인솔을 담당합니다."}
+    ];
+
+    const SEARCH_INDEX = [
+      {title:"N.O.D. 기관 소개", detail:"설립 목적, 핵심 임무, 연혁, 표장", route:"about", keywords:"기관 설립 연혁 수상 협력 상징"},
+      {title:"주요 인물·현장대", detail:"국장실, N-1, N-2, N-3 인물 프로필", route:"people", keywords:"소장 할 도로시 올가 백연 쿠로세 재클린 유나 비아트리스 오웬 조직 부서"},
+      {title:"사념체란 무엇인가", detail:"사념체, 티탄, 레버넌트와 공개 위험정보", route:"hazard", keywords:"사념체 티탄 레버넌트 위험 등급 행동요령 잔류 사념파"},
+      {title:"주요 사업·시설", detail:"재해 대응, 복지지원, 장의사 지원, 시설", route:"business", keywords:"시설 중앙청사 기억안정동 기록보존소 교육훈련원 의료 복지"},
+      {title:"앰버 72구역", detail:"구역별 행정·지도·대피시설 안내", route:"districts", keywords:"지도 구역 0구역 72구역 동부 서부 남부 북부 지도부"},
+      {title:"공지사항·공개자료", detail:"공지, 보도자료, 채용·입찰, 통계", route:"notice", keywords:"공지 보도 채용 입찰 통계 기록 자료"},
+      {title:"사념체 온라인 신고", detail:"목격·활동 개체·잔류 사념파 신고", route:"report", keywords:"신고 제보 사진 외형 묘사 구역 피해 민원"}
+    ];
+
+    const routes = new Set(["home","about","people","hazard","business","districts","notice","report"]);
+    const body = document.body;
+    const pages = [...document.querySelectorAll("[data-page]")];
+    const navLinks = [...document.querySelectorAll(".nav-link")];
+    const gnb = document.getElementById("gnb");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const settingsDialog = document.getElementById("settings-dialog");
+    const searchDialog = document.getElementById("search-dialog");
+    const searchInput = document.getElementById("site-search");
+    const searchResults = document.getElementById("search-results");
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function currentRoute(){
+      const raw = location.hash.replace(/^#\/?/,"").split("?")[0];
+      return routes.has(raw) ? raw : "home";
+    }
+
+    function showPage(route, updateHash=true){
+      if(!routes.has(route)) route = "home";
+      pages.forEach(page => page.classList.toggle("active", page.dataset.page === route));
+      navLinks.forEach(link => {
+        const active = link.dataset.route === route;
+        link.classList.toggle("active", active);
+        if(active) link.setAttribute("aria-current","page"); else link.removeAttribute("aria-current");
+      });
+      if(updateHash && location.hash !== `#${route}`) history.pushState(null,"",`#${route}`);
+      gnb.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded","false");
+      window.scrollTo({top:0,behavior:body.classList.contains("reduce-motion")?"auto":"smooth"});
+      const names={home:"N.O.D. 공식 홈페이지",about:"N.O.D. 소개",people:"조직·구성원",hazard:"사념재해 정보",business:"주요 사업·시설",districts:"앰버 72구역",notice:"알림·자료",report:"사념체 온라인 신고"};
+      document.title = `${names[route]}${route === "home" ? "" : " | N.O.D."}`;
+    }
+
+    document.addEventListener("click", event => {
+      const routeTarget = event.target.closest("[data-route]");
+      if(routeTarget){
+        event.preventDefault();
+        showPage(routeTarget.dataset.route);
+        if(searchDialog.open) searchDialog.close();
+      }
+      if(event.target.closest("[data-open-settings]")){settingsDialog.showModal();}
+      if(event.target.closest("[data-open-search]")){searchDialog.showModal();setTimeout(()=>searchInput.focus(),60);renderSearch("");}
+      if(event.target.closest("[data-close-dialog]")){event.target.closest("dialog").close();}
+    });
+
+    window.addEventListener("hashchange",()=>showPage(currentRoute(),false));
+    menuToggle.addEventListener("click",()=>{const open=gnb.classList.toggle("open");menuToggle.setAttribute("aria-expanded",String(open));});
+
+    document.querySelectorAll(".notice-tab").forEach(tab=>tab.addEventListener("click",()=>{
+      document.querySelectorAll(".notice-tab").forEach(t=>{const active=t===tab;t.classList.toggle("active",active);t.setAttribute("aria-selected",String(active));});
+      document.querySelectorAll(".notice-panel").forEach(panel=>panel.classList.toggle("active",panel.dataset.noticePanel===tab.dataset.noticeTab));
+    }));
+
+    function renderPeople(){
+      document.getElementById("people-grid").innerHTML = PERSONNEL.map(person=>`<article class="person" data-team="${person.team}"><div class="portrait" data-initial="${person.initial}"><img src="assets/profiles/${person.image}" alt="${person.name} 공개 프로필 사진" loading="lazy" onerror="this.remove()"></div><div class="person-body"><span class="person-team">${person.code}</span><h3>${person.name}</h3><div class="person-role">${person.role}</div><p>${person.bio}</p></div></article>`).join("");
+    }
+    renderPeople();
+    document.querySelectorAll("[data-team-filter]").forEach(button=>button.addEventListener("click",()=>{
+      document.querySelectorAll("[data-team-filter]").forEach(b=>b.classList.toggle("active",b===button));
+      document.querySelectorAll(".person").forEach(card=>card.hidden=button.dataset.teamFilter!=="all"&&card.dataset.team!==button.dataset.teamFilter);
+    }));
+
+    function renderSearch(query){
+      const q=query.trim().toLocaleLowerCase("ko-KR");
+      const found=q?SEARCH_INDEX.filter(item=>`${item.title} ${item.detail} ${item.keywords}`.toLocaleLowerCase("ko-KR").includes(q)):SEARCH_INDEX;
+      searchResults.innerHTML=found.length?found.map(item=>`<li><button type="button" data-route="${item.route}"><b>${item.title}</b><span>${item.detail}</span></button></li>`).join(""):`<li class="empty-search">일치하는 공개 자료가 없습니다.</li>`;
+    }
+    searchInput.addEventListener("input",()=>renderSearch(searchInput.value));
+    document.getElementById("search-submit").addEventListener("click",()=>renderSearch(searchInput.value));
+    searchInput.addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();renderSearch(searchInput.value);}});
+
+    function showToast(message){clearTimeout(toastTimer);toast.textContent=message;toast.classList.add("show");toastTimer=setTimeout(()=>toast.classList.remove("show"),2700);}
+
+    const carousel=document.getElementById("public-banner");
+    const carouselSlides=[...carousel.querySelectorAll(".banner-slide")];
+    const carouselDots=[...carousel.querySelectorAll(".carousel-dot")];
+    const carouselCount=carousel.querySelector(".carousel-count b");
+    let carouselIndex=0;
+    let carouselTimer=null;
+    let carouselPaused=false;
+    let carouselUserPaused=false;
+    let carouselReady=false;
+    let typingRun=0;
+
+    function motionIsReduced(){
+      return body.classList.contains("reduce-motion")||window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    function typeSlideTitle(slide){
+      const target=slide.querySelector("[data-typewriter]");
+      if(!target) return;
+      if(!target.dataset.typeText) target.dataset.typeText=target.textContent.trim();
+      const fullText=target.dataset.typeText;
+      const run=++typingRun;
+      target.classList.remove("typing");
+      if(motionIsReduced()){
+        target.textContent=fullText;
+        return;
+      }
+      target.textContent="";
+      target.classList.add("typing");
+      let position=0;
+      const tick=()=>{
+        if(run!==typingRun) return;
+        position+=1;
+        target.textContent=fullText.slice(0,position);
+        if(position<fullText.length){
+          const char=fullText[position-1];
+          const delay=/[\s·,]/.test(char)?66:34+Math.random()*24;
+          window.setTimeout(tick,delay);
+        }else{
+          window.setTimeout(()=>{if(run===typingRun)target.classList.remove("typing");},280);
+        }
+      };
+      window.setTimeout(tick,120);
+    }
+
+    function stopCarousel(){
+      window.clearTimeout(carouselTimer);
+      carouselTimer=null;
+      carousel.classList.remove("autoplay");
+    }
+
+    function scheduleCarousel(){
+      stopCarousel();
+      if(carouselPaused||carouselUserPaused||motionIsReduced()||document.hidden) return;
+      void carousel.offsetWidth;
+      carousel.classList.add("autoplay");
+      carouselTimer=window.setTimeout(()=>showCarouselSlide(carouselIndex+1),6500);
+    }
+
+    function showCarouselSlide(nextIndex, options={}){
+      carouselIndex=(nextIndex+carouselSlides.length)%carouselSlides.length;
+      carousel.style.removeProperty("--drag-x");
+      carousel.style.removeProperty("--drag-opacity");
+      carouselSlides.forEach((slide,index)=>{
+        const active=index===carouselIndex;
+        slide.classList.toggle("active",active);
+        slide.setAttribute("aria-hidden",String(!active));
+        slide.toggleAttribute("inert",!active);
+      });
+      carouselDots.forEach((dot,index)=>{
+        const active=index===carouselIndex;
+        dot.classList.toggle("active",active);
+        dot.setAttribute("aria-selected",String(active));
+      });
+      carouselCount.textContent=String(carouselIndex+1).padStart(2,"0");
+      typeSlideTitle(carouselSlides[carouselIndex]);
+      if(!options.keepPaused) scheduleCarousel();
+    }
+
+    function setCarouselPaused(paused){
+      carouselPaused=paused;
+      if(paused) stopCarousel(); else scheduleCarousel();
+    }
+
+    function initCarousel(){
+      carouselReady=true;
+      carousel.querySelector("[data-carousel-prev]").addEventListener("click",()=>showCarouselSlide(carouselIndex-1));
+      carousel.querySelector("[data-carousel-next]").addEventListener("click",()=>showCarouselSlide(carouselIndex+1));
+      const toggle=carousel.querySelector("[data-carousel-toggle]");
+      toggle.addEventListener("click",()=>{
+        carouselUserPaused=!carouselUserPaused;
+        toggle.textContent=carouselUserPaused?"▶":"Ⅱ";
+        toggle.setAttribute("aria-label",carouselUserPaused?"자동 전환 재생":"자동 전환 일시정지");
+        if(carouselUserPaused)stopCarousel();else scheduleCarousel();
+      });
+      carouselDots.forEach(dot=>dot.addEventListener("click",()=>showCarouselSlide(Number(dot.dataset.carouselDot))));
+      carousel.addEventListener("mouseenter",()=>setCarouselPaused(true));
+      carousel.addEventListener("mouseleave",()=>setCarouselPaused(false));
+      carousel.addEventListener("focusin",()=>setCarouselPaused(true));
+      carousel.addEventListener("focusout",event=>{if(!carousel.contains(event.relatedTarget))setCarouselPaused(false);});
+      carousel.addEventListener("keydown",event=>{
+        if(event.key==="ArrowLeft"){event.preventDefault();showCarouselSlide(carouselIndex-1);}
+        if(event.key==="ArrowRight"){event.preventDefault();showCarouselSlide(carouselIndex+1);}
+      });
+
+      let pointerId=null;
+      let startX=0;
+      let startY=0;
+      let dragX=0;
+      let horizontal=false;
+      carousel.addEventListener("pointerdown",event=>{
+        if(event.button!==0||event.target.closest("button,a")) return;
+        pointerId=event.pointerId;
+        startX=event.clientX;
+        startY=event.clientY;
+        dragX=0;
+        horizontal=false;
+        carousel.setPointerCapture(pointerId);
+        carousel.classList.add("dragging");
+        setCarouselPaused(true);
+      });
+      carousel.addEventListener("pointermove",event=>{
+        if(event.pointerId!==pointerId) return;
+        const dx=event.clientX-startX;
+        const dy=event.clientY-startY;
+        if(!horizontal&&Math.abs(dx)>8) horizontal=Math.abs(dx)>Math.abs(dy);
+        if(!horizontal) return;
+        event.preventDefault();
+        dragX=Math.max(-130,Math.min(130,dx));
+        carousel.style.setProperty("--drag-x",`${dragX}px`);
+        carousel.style.setProperty("--drag-opacity",String(Math.max(.62,1-Math.abs(dragX)/310)));
+      });
+      const finishDrag=event=>{
+        if(event.pointerId!==pointerId) return;
+        if(carousel.hasPointerCapture(pointerId))carousel.releasePointerCapture(pointerId);
+        carousel.classList.remove("dragging");
+        pointerId=null;
+        carouselPaused=event.pointerType==="mouse"&&carousel.matches(":hover");
+        if(horizontal&&Math.abs(dragX)>48) showCarouselSlide(carouselIndex+(dragX<0?1:-1));
+        else{
+          carousel.style.removeProperty("--drag-x");
+          carousel.style.removeProperty("--drag-opacity");
+          scheduleCarousel();
+        }
+      };
+      carousel.addEventListener("pointerup",finishDrag);
+      carousel.addEventListener("pointercancel",finishDrag);
+      document.addEventListener("visibilitychange",scheduleCarousel);
+      showCarouselSlide(0);
+    }
+
+    let revealReady=false;
+    let revealObserver=null;
+    function initReveal(){
+      const selector=".home-section .section-head,.news-layout,.stat-grid,.card-grid,.district-banner,.content-head,.lead-box,.mission-grid,.history,.filter-bar,.people-grid,.hazard-banner,.info-table,.steps,.facility,.district-summary,.archive-list,.report-guide,.form-wrap";
+      const items=[...document.querySelectorAll(selector)];
+      items.forEach((item,index)=>{
+        item.classList.add("reveal-item");
+        item.style.setProperty("--reveal-delay",`${(index%3)*55}ms`);
+      });
+      revealReady=true;
+      if(!("IntersectionObserver" in window)||motionIsReduced()){
+        items.forEach(item=>item.classList.add("is-visible"));
+        return;
+      }
+      body.classList.add("reveal-ready");
+      revealObserver=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){entry.target.classList.add("is-visible");revealObserver.unobserve(entry.target);}
+        });
+      },{threshold:.08,rootMargin:"0px 0px -7% 0px"});
+      items.forEach(item=>revealObserver.observe(item));
+    }
+
+    function syncMotionFeatures(){
+      if(carouselReady){
+        if(motionIsReduced()){
+          stopCarousel();
+          const title=carouselSlides[carouselIndex].querySelector("[data-typewriter]");
+          if(title){title.textContent=title.dataset.typeText||title.textContent;title.classList.remove("typing");}
+        }else scheduleCarousel();
+      }
+      if(revealReady&&motionIsReduced())document.querySelectorAll(".reveal-item").forEach(item=>item.classList.add("is-visible"));
+    }
+
+    const defaultSettings={theme:"light",font:"1",effects:true,motion:false};
+    function loadSettings(){
+      try{return {...defaultSettings,...JSON.parse(localStorage.getItem("nod-display-settings")||"{}")};}catch{return {...defaultSettings};}
+    }
+    let settings=loadSettings();
+    function applySettings(){
+      body.dataset.theme=settings.theme;
+      document.documentElement.style.setProperty("--font-scale",settings.font);
+      body.classList.toggle("no-effects",!settings.effects);
+      body.classList.toggle("reduce-motion",settings.motion);
+      document.querySelectorAll("[data-theme-value]").forEach(b=>b.classList.toggle("active",b.dataset.themeValue===settings.theme));
+      document.querySelectorAll("[data-font-value]").forEach(b=>b.classList.toggle("active",b.dataset.fontValue===settings.font));
+      document.getElementById("effects-toggle").checked=settings.effects;
+      document.getElementById("motion-toggle").checked=settings.motion;
+      localStorage.setItem("nod-display-settings",JSON.stringify(settings));
+      syncMotionFeatures();
+    }
+    document.querySelectorAll("[data-theme-value]").forEach(b=>b.addEventListener("click",()=>{settings.theme=b.dataset.themeValue;applySettings();}));
+    document.querySelectorAll("[data-font-value]").forEach(b=>b.addEventListener("click",()=>{settings.font=b.dataset.fontValue;applySettings();}));
+    document.getElementById("effects-toggle").addEventListener("change",e=>{settings.effects=e.target.checked;applySettings();});
+    document.getElementById("motion-toggle").addEventListener("change",e=>{settings.motion=e.target.checked;applySettings();});
+    document.getElementById("reset-settings").addEventListener("click",()=>{settings={...defaultSettings};applySettings();showToast("화면 설정을 초기화했습니다.");});
+    document.querySelectorAll("[data-font-action]").forEach(b=>b.addEventListener("click",()=>{settings.font=settings.font==="1.12"?"0.9":settings.font==="1"?"1.12":"1";applySettings();showToast("글자 크기를 조정했습니다.");}));
+    applySettings();
+    initCarousel();
+    initReveal();
+
+    const districtSelect=document.getElementById("district");
+    districtSelect.insertAdjacentHTML("beforeend",Array.from({length:73},(_,id)=>`<option value="${id}">${String(id).padStart(2,"0")}구역</option>`).join(""));
+    const photoInput=document.getElementById("photo");
+    photoInput.addEventListener("change",()=>{
+      const file=photoInput.files[0];
+      if(file&&file.size>SITE_CONFIG.maxFileBytes){photoInput.value="";showToast("첨부 사진은 10MB 이하여야 합니다.");}
+    });
+
+    document.getElementById("report-form").addEventListener("submit",async event=>{
+      event.preventDefault();
+      const form=event.currentTarget;
+      const message=document.getElementById("form-message");
+      message.className="form-message";
+      if(!form.checkValidity()){form.reportValidity();message.textContent="필수 항목을 확인해 주십시오.";message.classList.add("error");return;}
+      const file=photoInput.files[0];
+      if(file&&file.size>SITE_CONFIG.maxFileBytes){message.textContent="첨부 사진은 10MB 이하여야 합니다.";message.classList.add("error");return;}
+      if(!SITE_CONFIG.formEndpoint){message.textContent="현재 견본 화면입니다. SITE_CONFIG.formEndpoint 설정 후 실제 접수가 활성화됩니다.";message.classList.add("error");return;}
+      const submit=form.querySelector("button[type=submit]");submit.disabled=true;submit.textContent="접수 중…";
+      try{
+        const response=await fetch(SITE_CONFIG.formEndpoint,{method:"POST",body:new FormData(form),headers:{Accept:"application/json"}});
+        if(!response.ok) throw new Error("submit_failed");
+        const caseNo=`NOD-446-${String(districtSelect.value).padStart(2,"0")}-${Math.random().toString(36).slice(2,6).toUpperCase()}`;
+        message.textContent=`접수되었습니다. 접수번호 ${caseNo} · 개별 회신은 제공되지 않습니다.`;message.classList.add("success");form.reset();
+      }catch{message.textContent="접수망과 연결하지 못했습니다. 잠시 후 다시 시도해 주십시오.";message.classList.add("error");}
+      finally{submit.disabled=false;submit.textContent="신고서 접수";}
+    });
+
+    [settingsDialog,searchDialog].forEach(dialog=>dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();}));
+    showPage(currentRoute(),false);
+  </script>
+</body>
+</html>
